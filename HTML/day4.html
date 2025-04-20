@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Table, Form</title>
+</head>
+
+<body>
+    <h1>Table</h1>
+    <table border="black">
+        <caption>Food Menu</caption>
+        <!-- Table header  -->
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+
+        <!-- table body  -->
+        <tbody>
+            <tr>
+                <td>Frooti</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Samosa</td>
+                <td>20</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td>30</td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+    <hr>
+
+    <h1>Colspan & Rowspan Attributes</h1>
+
+    <table border="black">
+        <caption>
+            Food Menu
+        </caption>
+        <tr>
+            <th rowspan="2">Item</th>
+            <th colspan="2">Price</th>
+
+        </tr>
+        <tr>
+            <th>INR</th>
+            <th>USD</th>
+        </tr>
+        <tr>
+            <td>Frooti</td>
+            <td>10</td>
+            <td>0.14</td>
+        </tr>
+        <tr>
+            <td>Samosa</td>
+            <td>12</td>
+            <td>0.17</td>
+        </tr>
+        <tr>
+            <td>Chips</td>
+            <td>20</td>
+            <td>0.28</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- Practice Qs 7 -->
+
+    <h1>Practice Qs 7</h1>
+
+    <table border="black">
+        <caption>A test table with merged cells</caption>
+        <thead>
+            <tr>
+                <th rowspan="2"></th>
+                <th colspan="2">Average</th>
+                <th rowspan="2">Red eyes</th>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Males</td>
+                <td>1.9</td>
+                <td>0.003</td>
+                <td>40%</td>
+            </tr>
+            <tr>
+                <td>females</td>
+                <td>1.7</td>
+                <td>0.002</td>
+                <td>43%</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <hr>
+
+    <!-- ------------- HTML Form ----------- -->
+
+    <h1>Form</h1>
+
+    <p>type attirbute</p>
+
+    <form action="/action">
+
+        username
+        <input type="text" placeholder="username">
+
+        <br>
+
+        password
+        <input type="password" placeholder="password">
+
+        <br>
+        number
+        <input type="number">
+        <br>
+        Date
+        <input type="date">
+        <br>
+        time
+        <input type="time">
+        <br>
+        color
+        <input type="color">
+    </form>
+
+
+
+    <hr>
+
+    <p>label attributes</p>
+
+    <!-- here, when we click on label username then automatically trrigred input value  -->
+
+    <form action="/server">
+        <label for="username">
+            username
+            <input type="text" placeholder="username">
+        </label>
+
+        <br>
+
+        <label for="password">
+            password
+            <input type="password" placeholder="password">
+        </label>
+
+        <br>
+
+        <label for="username">username: </label>
+        <input type="text" id="username">
+
+        <br>
+
+        <label for="password">password: </label>
+        <input type="passowrd" id="password">
+
+
+        <h1>Button</h1>
+
+        <button>submit</button>
+
+        <hr>
+
+        <p>Type Attrubute</p>
+
+        <button type="submit">submit</button>
+        <button type="button">do something</button>
+        <button type="reset">reset</button>
+
+        <p>Button using input </p>
+
+        <input type="submit">
+        <input type="submit" value="click me">
+
+    </form>
+
+    <hr>
+    <p>Name Attributes</p>
+    <form action="/server">
+        <input type="text" placeholder="enter name" id="username" name="username">
+        <button>submit</button>
+    </form>
+
+    <hr>
+    <!-- <form action="https://www.youtube.com/results?search_query"> -->
+    <form action="https://www.youtube.com/results">
+        <input type="text" placeholder="search on youtube" name="search_query">
+        <button>search</button>
+    </form>
+
+    <form action="https://www.google.com/search?q">
+        <input type="text" placeholder="search on google" name="q">
+        <button>search</button>
+    </form>
+
+    <form action="/server2">
+        <input type="checkbox" name="age" id="age">
+        <label for="age">I am 18+</label>
+
+        <div>
+            <input type="radio" name="fruit" id="apple" value="apple">
+            <label for="apple">apple</label>
+            <input type="radio" name="fruit" id="mango" value="mango">
+            <label for="mango">mango</label>
+            <input type="radio" name="fruit" id="banana" value="banana">
+            <label for="banana">banana</label>
+        </div>
+
+        <div>
+            choose your profession:
+            <select name="profession" id="profession">
+                <option>select your option</option>
+                <option value="stu" selected>student</option>
+                <option value="dev">developer</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="vol">select your volume level: </label>
+            <input type="range" id="vol" min="0" max="100" name="vol" step="10" value="40">
+        </div>
+
+        <div>
+            <label for="feedback">Please give your valuable feedback:</label><br>
+            <textarea name="feedback" id="feedback" placeholder="Write your feedback"></textarea>
+        </div>
+        <button>submit</button>
+        <button type="reset">reset</button>
+
+    </form>
+
+    <hr>
+
+    <h1>Practice Qs 9</h1>
+
+    <form action="/server">
+        <h3>Registration Form</h3>
+
+        <div>
+            <input type="text" placeholder="First Name" name="fName">
+            <input type="text" placeholder="Last Name" name="lName">
+        </div>
+
+        <div>
+            <label for="gender" id="gender">Please select gender</label>
+            <select name="gender" id="gender">
+                <option value="m">Male</option>
+                <option value="f">female</option>
+                <option value="o">other</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Do you agree to all terms of service?</label>
+            <input type="checkbox" name="condition" id="condition" value="yes">
+            <label for="condition">Yes, I agree</label>
+        </div>
+
+        <button>Register</button>
+        <button type="reset">reset</button>
+    </form>
+
+    <hr>
+    <!-- ------------- HTML (Level 3) -------------  -->
+     <!-- --------------- Practice questions -----------  -->
+
+     <h1><b>HTML (Level 3)</b></h1>
+     <h2>Practice Questions</h2>
+
+     <hr>
+     <!-- ---------- Questions 1 --------------- -->
+     <h4>---------- Questions 1 ---------------</h4>
+<table border="black">
+    <caption>student information</caption>
+    <tr>
+        <th rowspan="6">Info</th>
+        <th rowspan="2">Name</th>
+        <th colspan="2">Address</th>
+    </tr>
+    <tr>
+        <th>City</th>
+        <th>House</th>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>Delhi</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>B</td>
+        <td>Mumbai</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>C</td>
+        <td>Kolkata</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>D</td>
+        <td>Pune</td>
+        <td>4</td>
+    </tr>
+</table>
+
+<hr>
+<!-- ---------- Questions 2 --------------- -->
+<h4>---------- Questions 2 ---------------</h4>
+
+<form action="/server">
+    <div>
+        <label for="name">Name: </label>
+        <input type="text">
+    </div>
+    <div>
+        <label for="sex">Sex: </label>
+
+        <input type="radio" name="sex" id="male" value="m">
+        <label for="male">Male</label>
+        <input type="radio" name="sex" id="female" value="f">
+        <label for="female">Female</label>
+        <input type="radio" name="sex" id="other" value="o">
+        <label for="Other">Other</label>
+    </div>
+    <div>
+        <label for="country">Country: </label>
+        <select name="country" id="country">
+            <option>Select an option</option>
+            <option value="India">India</option>
+            <option value="Nepal">Nepal</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+        </select>
+    </div>
+    <div>
+        <label for="message">Message: </label><br>
+        <textarea name="message" id="message" rows="3"></textarea>
+    </div>
+    <div>
+        <input type="checkbox" name="condtion" id="condtion" value="yes">
+        <label for="condition">I agree.</label>
+    </div>
+    <button>Submit</button>
+</form>
+
+
+<hr>
+<!-- ---------- Questions 3 --------------- -->
+<h4>---------- Questions 3 ---------------</h4>
+
+<form action="/server">
+    <h3>Feedback Form</h3>
+    <div>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" placeholder="Write your name">
+        <br>
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" placeholder="Write your name">
+    </div>
+    <div>
+        <label for="message">Message: </label><br>
+        <textarea name="message" id="message" rows="4"></textarea>
+    </div>
+    <div>
+        <label for="rate">Rate us: </label><br>
+        <input type="radio" name="rate" value="1" id="1">
+        <label for="1">1</label><br>
+        <input type="radio" name="rate" value="2" id="2">
+        <label for="2">2</label><br>
+        <input type="radio" name="rate" value="3" id="3">
+        <label for="3">3</label><br>
+        <input type="radio" name="rate" value="4" id="4">
+        <label for="4">4</label><br>
+        <input type="radio" name="rate" value="5" id="5">
+        <label for="5">5</label>
+    </div>
+    <button>Send your message</button>
+    
+
+</form>
+
+</body>
+
+</html>
