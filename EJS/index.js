@@ -39,14 +39,31 @@ app.get("/rolldice", (req, res) => {
 
 //#08 Loops in EJS
 
+// app.get("/ig/:username", (req, res) => {
+//     const followers = ["Prem", "Rajat", "Prince", "Lovekesh", "Sheshav", "Anand"];
+//     let { username } = req.params;
+//     res.render("instagram.ejs", {username, followers});
+// });
+
+// #09 instagram page with ejs
+
 app.get("/ig/:username", (req, res) => {
-    const followers = ["Prem", "Rajat", "Prince", "Lovekesh", "Sheshav", "Anand"];
     let { username } = req.params;
-    res.render("instagram.ejs", {username, followers});
+    const instaData = require("./data.json");
+    const data = instaData[username];
+    if(data){
+        res.render("instadata.ejs", { data });
+    }
+    else{
+        res.render("error.ejs");
+    }
+    
 });
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+
 
 
