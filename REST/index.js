@@ -32,7 +32,18 @@ app.get("/posts", (req, res) => {
     res.render("index.ejs", { posts });
 });
 
+// #05 create and New Route
 
+app.get("/posts/new", (req, res) => {
+    res.render("new.ejs");
+});
+
+app.post("/posts", (req, res) => {
+    // console.log(req.body);
+    let { username, content } = req.body;
+    posts.push({username, content});
+    res.send("post request working");
+});
 
 // app.get("/", (req, res) => {
 //     res.send("serving working well!");
