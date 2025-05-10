@@ -67,6 +67,21 @@ app.get("/posts/:id", (req, res) => {
     res.render("show.ejs", { post });
 });
 
+// #09 Update Route
+
+app.patch("/posts/:id", (req, res) => { //step1. go to the hoppscotch and select PATCH and set the url with id
+                                        //step2. select body - content type application/x-www-form-urlencoded
+    let { id } = req.params;            //step3. parameter1 - content and value1 - I love coding
+    let newContent = req.body.content;
+    // for update
+    let post = posts.find((p) => id === p.id);
+    post.content = newContent;
+    console.log(post);
+    // console.log(newContent);
+    // console.log(id);
+    res.send("pathch request working");
+});
+
 // app.get("/", (req, res) => {
 //     res.send("serving working well!");
 // })
