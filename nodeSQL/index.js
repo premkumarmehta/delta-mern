@@ -12,26 +12,58 @@ const connection = mysql.createConnection({
   password: 'prem123'
 });
 
-try{
-connection.query("SHOW TABLES", (err, result) => {
-    if (err) throw err;
-    console.log(result); 
-}); 
-} catch (err){
-    console.log(err);
-}
-
-
-connection.end(); // to close connection
+// try{
+// connection.query("SHOW TABLES", (err, result) => {
+//     if (err) throw err;
+//     console.log(result); 
+// }); 
+// } catch (err){
+//     console.log(err);
+// }
 
 
 let getRandomUser = () => {
   return {
-    userId: faker.string.uuid(),
+    id: faker.string.uuid(),
     username: faker.internet.username(), // before version 9.1.0, use userName()
     email: faker.internet.email(),
     password: faker.internet.password(),
   };
 };
 
-console.log(getRandomUser());
+// console.log(getRandomUser());
+
+
+// #05 inser into user
+
+// let user = ["123@abc2", "random_user2", "random@gmail.com", "random@123"];
+
+// connection.query(
+//   `INSERT INTO user(id, username, email, password) VALUES (?,?,?,?)`,
+//   user,
+//   function(err, results){
+//     if(err) throw err;
+//     console.log(results);
+//   }
+// );
+
+// #06 insert into bulk
+
+let data = [];
+for (let i=1; i<=50; i++){
+  const u = getRandomUser();
+  data.push([u.id, u.username, u.email, u.password]);
+}
+
+// console.log(data);
+
+let q = `INSERT INTO user(id, username, email, password) VALUES ?`;
+
+connection.query(q,[data], function(err, results){
+  if(err) throw err;
+  console.log(results);
+});
+
+
+connection.end(); // to close connection
+
