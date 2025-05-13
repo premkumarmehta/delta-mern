@@ -142,11 +142,28 @@ app.get("/user/:id/edit", (req, res) => {
 
 
 app.patch("/user/:id", (req, res) => {
-
-      console.log("updated");
-      res.send("updated");
-      // res.redirect("http://localhost:8080/user");
-
+  let { id } = req.params;
+  let {password: formPass, username: newUsername} = req.body;
+  let q = `SELECT * FROM user WHERE id='${id}'`;
+   try{
+    connection.query(q, (err, result) => {
+      if (err) throw err;
+      let user = result[0];
+      if(formPass != user.password){
+        res.send("Wrong passwrod");
+      }else{
+        let q2 = `UPDATE user SET username='${newUsername}' WHERE id = '${id}'`;
+        connection.query(q2, (err, result) => {
+          if(err) throw err;
+          res.redirect("/user");
+        });
+      }
+      
+    });
+  }catch(err){
+    console.log(err);
+    res.send("some error from db update section");
+  }
 });
 
 
