@@ -9,6 +9,10 @@ const app = express();
 
 const path = require("path");
 
+const methodOverride = require("method-override"); 
+app.use(methodOverride("_method"))
+app.use(express.urlencoded({extended:true}));
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"/views"));
 
@@ -111,6 +115,40 @@ app.get("/user", (req, res) => {
     res.send("some error in db");
   }
 });
+
+// #11 Edit route
+
+app.get("/user/:id/edit", (req, res) => {
+  let { id } = req.params;
+  let q = `SELECT * FROM user WHERE id='${id}'`;
+
+  try{
+    connection.query(q, (err, result) => {
+      if (err) throw err;
+      // console.log(result);
+
+      let user = result[0];
+      res.render("edit.ejs", {user});
+    });
+  }catch(err){
+    console.log(err);
+    res.send("some error from db edit section");
+  }
+  
+});
+
+
+// update (DB) route
+
+
+app.patch("/user/:id", (req, res) => {
+
+      console.log("updated");
+      res.send("updated");
+      // res.redirect("http://localhost:8080/user");
+
+});
+
 
 app.listen("8080", () => {
   console.log("server is listening on port 8080");
