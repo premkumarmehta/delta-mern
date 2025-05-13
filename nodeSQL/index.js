@@ -83,7 +83,6 @@ app.get("/", (req, res) =>{
       // console.log(result);
       let count = result[0]["count(*)"];
       // res.render("home.ejs");
-      
 
      
       res.render("home.ejs", { count });
@@ -91,6 +90,26 @@ app.get("/", (req, res) =>{
   }catch(err){
       res.send("some error occurred");
     }
+});
+
+// #10 show route
+
+app.get("/user", (req, res) => {
+  let q = `SELECT * FROM user`;
+  try{
+    connection.query(q, (err, users ) => {
+      if (err) throw err;
+      // let data = result;
+      // console.log(data);
+      // res.send(data);
+      // res.render("showusers.ejs");
+
+      res.render("showusers.ejs", { users });
+    });
+  }catch(err){
+    console.log(err);
+    res.send("some error in db");
+  }
 });
 
 app.listen("8080", () => {
