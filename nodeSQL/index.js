@@ -4,6 +4,15 @@
 const { faker } = require('@faker-js/faker');
 const mysql = require("mysql2");
 
+const express = require("express");
+const app = express();
+
+const path = require("path");
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname,"/views"));
+
+
 // Create the connection to database
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -49,21 +58,43 @@ let getRandomUser = () => {
 
 // #06 insert into bulk
 
-let data = [];
-for (let i=1; i<=50; i++){
-  const u = getRandomUser();
-  data.push([u.id, u.username, u.email, u.password]);
-}
+// let data = [];
+// for (let i=1; i<=50; i++){
+//   const u = getRandomUser();
+//   data.push([u.id, u.username, u.email, u.password]);
+// }
 
-// console.log(data);
+// // console.log(data);
 
-let q = `INSERT INTO user(id, username, email, password) VALUES ?`;
+// let q = `INSERT INTO user(id, username, email, password) VALUES ?`;
 
-connection.query(q,[data], function(err, results){
-  if(err) throw err;
-  console.log(results);
+// connection.query(q,[data], function(err, results){
+//   if(err) throw err;
+//   console.log(results);
+// });
+
+// #08 Home route
+
+app.get("/", (req, res) =>{
+  let q = `SELECT count(*) FROM user`;
+  try{
+    connection.query(q,(err, result) => {
+      if(err) throw err;
+      // console.log(result);
+      let count = result[0]["count(*)"];
+      // res.render("home.ejs");
+      
+
+     
+      res.render("home.ejs", { count });
+    });
+  }catch(err){
+      res.send("some error occurred");
+    }
 });
 
-
-connection.end(); // to close connection
+app.listen("8080", () => {
+  console.log("server is listening on port 8080");
+})
+// connection.end(); // to close connection
 
